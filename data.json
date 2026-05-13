@@ -1,0 +1,2345 @@
+{
+  "market_correlation": {
+    "nodes": [
+      {
+        "id": "SPX",
+        "name": "S&P 500",
+        "country": "US",
+        "group": "developed",
+        "symbolSize": 40
+      },
+      {
+        "id": "NDX",
+        "name": "Nasdaq 100",
+        "country": "US",
+        "group": "developed",
+        "symbolSize": 35
+      },
+      {
+        "id": "DJI",
+        "name": "Dow Jones",
+        "country": "US",
+        "group": "developed",
+        "symbolSize": 35
+      },
+      {
+        "id": "FCHI",
+        "name": "CAC 40",
+        "country": "FR",
+        "group": "developed",
+        "symbolSize": 25
+      },
+      {
+        "id": "GDAXI",
+        "name": "DAX",
+        "country": "DE",
+        "group": "developed",
+        "symbolSize": 25
+      },
+      {
+        "id": "FTSE",
+        "name": "FTSE 100",
+        "country": "GB",
+        "group": "developed",
+        "symbolSize": 25
+      },
+      {
+        "id": "N225",
+        "name": "Nikkei 225",
+        "country": "JP",
+        "group": "developed",
+        "symbolSize": 30
+      },
+      {
+        "id": "COLCAP",
+        "name": "MSCI COLCAP",
+        "country": "CO",
+        "group": "emerging",
+        "symbolSize": 15
+      },
+      {
+        "id": "BVSP",
+        "name": "Bovespa",
+        "country": "BR",
+        "group": "emerging",
+        "symbolSize": 20
+      },
+      {
+        "id": "MXX",
+        "name": "S&P BMV IPC",
+        "country": "MX",
+        "group": "emerging",
+        "symbolSize": 20
+      }
+    ],
+    "links": [
+      {
+        "source": "SPX",
+        "target": "NDX",
+        "value": 0.95
+      },
+      {
+        "source": "SPX",
+        "target": "DJI",
+        "value": 0.93
+      },
+      {
+        "source": "SPX",
+        "target": "FCHI",
+        "value": 0.85
+      },
+      {
+        "source": "SPX",
+        "target": "GDAXI",
+        "value": 0.82
+      },
+      {
+        "source": "SPX",
+        "target": "FTSE",
+        "value": 0.78
+      },
+      {
+        "source": "SPX",
+        "target": "N225",
+        "value": 0.65
+      },
+      {
+        "source": "NDX",
+        "target": "DJI",
+        "value": 0.9
+      },
+      {
+        "source": "FCHI",
+        "target": "GDAXI",
+        "value": 0.88
+      },
+      {
+        "source": "BVSP",
+        "target": "SPX",
+        "value": 0.4
+      },
+      {
+        "source": "MXX",
+        "target": "SPX",
+        "value": 0.45
+      },
+      {
+        "source": "COLCAP",
+        "target": "SPX",
+        "value": 0.12
+      },
+      {
+        "source": "COLCAP",
+        "target": "BVSP",
+        "value": 0.35
+      },
+      {
+        "source": "COLCAP",
+        "target": "MXX",
+        "value": 0.28
+      }
+    ]
+  },
+  "market_data": {
+    "SPX": {
+      "info": {
+        "name": "S&P 500",
+        "country": "United States",
+        "group": "Developed Markets"
+      },
+      "timeseries": [
+        {
+          "date": "2020-02-18",
+          "open": 3375,
+          "high": 3393,
+          "low": 3360,
+          "close": 3370,
+          "index_tv": 800,
+          "country_neg_sentiment": 15000
+        },
+        {
+          "date": "2020-02-19",
+          "open": 3380,
+          "high": 3393,
+          "low": 3374,
+          "close": 3386,
+          "index_tv": 850,
+          "country_neg_sentiment": 16000
+        },
+        {
+          "date": "2020-02-20",
+          "open": 3380,
+          "high": 3389,
+          "low": 3341,
+          "close": 3373,
+          "index_tv": 1200,
+          "country_neg_sentiment": 25000
+        },
+        {
+          "date": "2020-02-21",
+          "open": 3360,
+          "high": 3360,
+          "low": 3328,
+          "close": 3337,
+          "index_tv": 1800,
+          "country_neg_sentiment": 35000
+        },
+        {
+          "date": "2020-02-24",
+          "open": 3257,
+          "high": 3259,
+          "low": 3214,
+          "close": 3225,
+          "index_tv": 3500,
+          "country_neg_sentiment": 65000
+        },
+        {
+          "date": "2020-02-25",
+          "open": 3238,
+          "high": 3246,
+          "low": 3118,
+          "close": 3128,
+          "index_tv": 4200,
+          "country_neg_sentiment": 80000
+        },
+        {
+          "date": "2020-02-26",
+          "open": 3139,
+          "high": 3182,
+          "low": 3108,
+          "close": 3116,
+          "index_tv": 4800,
+          "country_neg_sentiment": 85000
+        },
+        {
+          "date": "2020-02-27",
+          "open": 3062,
+          "high": 3069,
+          "low": 2977,
+          "close": 2978,
+          "index_tv": 6500,
+          "country_neg_sentiment": 110000
+        },
+        {
+          "date": "2020-02-28",
+          "open": 2916,
+          "high": 2959,
+          "low": 2855,
+          "close": 2954,
+          "index_tv": 7200,
+          "country_neg_sentiment": 125000
+        },
+        {
+          "date": "2020-03-02",
+          "open": 2974,
+          "high": 3090,
+          "low": 2943,
+          "close": 3090,
+          "index_tv": 5000,
+          "country_neg_sentiment": 90000
+        },
+        {
+          "date": "2020-03-03",
+          "open": 3096,
+          "high": 3136,
+          "low": 2976,
+          "close": 3003,
+          "index_tv": 5500,
+          "country_neg_sentiment": 95000
+        },
+        {
+          "date": "2020-03-04",
+          "open": 3045,
+          "high": 3130,
+          "low": 3034,
+          "close": 3130,
+          "index_tv": 4000,
+          "country_neg_sentiment": 75000
+        },
+        {
+          "date": "2020-03-05",
+          "open": 3079,
+          "high": 3083,
+          "low": 2999,
+          "close": 3023,
+          "index_tv": 4800,
+          "country_neg_sentiment": 85000
+        },
+        {
+          "date": "2020-03-06",
+          "open": 2954,
+          "high": 2985,
+          "low": 2901,
+          "close": 2972,
+          "index_tv": 6000,
+          "country_neg_sentiment": 105000
+        },
+        {
+          "date": "2020-03-09",
+          "open": 2764,
+          "high": 2840,
+          "low": 2734,
+          "close": 2746,
+          "index_tv": 9500,
+          "country_neg_sentiment": 180000
+        },
+        {
+          "date": "2020-03-10",
+          "open": 2843,
+          "high": 2882,
+          "low": 2733,
+          "close": 2882,
+          "index_tv": 7000,
+          "country_neg_sentiment": 130000
+        },
+        {
+          "date": "2020-03-11",
+          "open": 2825,
+          "high": 2825,
+          "low": 2707,
+          "close": 2741,
+          "index_tv": 8500,
+          "country_neg_sentiment": 160000
+        },
+        {
+          "date": "2020-03-12",
+          "open": 2630,
+          "high": 2660,
+          "low": 2478,
+          "close": 2480,
+          "index_tv": 12000,
+          "country_neg_sentiment": 220000
+        },
+        {
+          "date": "2020-03-13",
+          "open": 2569,
+          "high": 2711,
+          "low": 2492,
+          "close": 2711,
+          "index_tv": 10000,
+          "country_neg_sentiment": 190000
+        },
+        {
+          "date": "2020-03-16",
+          "open": 2508,
+          "high": 2562,
+          "low": 2380,
+          "close": 2386,
+          "index_tv": 15000,
+          "country_neg_sentiment": 280000
+        }
+      ],
+      "efficiency": {
+        "hurst": 0.52,
+        "genton": 1.55,
+        "hall_wood": 1.49
+      },
+      "prediction": {
+        "forecast": "DOWN",
+        "probability": 0.72,
+        "feature_contributions": [
+          {
+            "feature": "INDEX_K (Stochastic)",
+            "weight": -0.35,
+            "category": "technical"
+          },
+          {
+            "feature": "COUNTRY_NEG (Twitter)",
+            "weight": -0.25,
+            "category": "social"
+          },
+          {
+            "feature": "INDEX_SMA",
+            "weight": -0.15,
+            "category": "technical"
+          },
+          {
+            "feature": "WORLD_NEG",
+            "weight": -0.1,
+            "category": "social"
+          }
+        ]
+      }
+    },
+    "COLCAP": {
+      "info": {
+        "name": "MSCI COLCAP",
+        "country": "Colombia",
+        "group": "Emerging Markets"
+      },
+      "timeseries": [
+        {
+          "date": "2020-02-18",
+          "open": 1665,
+          "high": 1675,
+          "low": 1660,
+          "close": 1670,
+          "index_tv": 15,
+          "country_neg_sentiment": 800
+        },
+        {
+          "date": "2020-02-19",
+          "open": 1672,
+          "high": 1680,
+          "low": 1665,
+          "close": 1678,
+          "index_tv": 12,
+          "country_neg_sentiment": 750
+        },
+        {
+          "date": "2020-02-20",
+          "open": 1675,
+          "high": 1682,
+          "low": 1668,
+          "close": 1673,
+          "index_tv": 20,
+          "country_neg_sentiment": 900
+        },
+        {
+          "date": "2020-02-21",
+          "open": 1670,
+          "high": 1675,
+          "low": 1655,
+          "close": 1660,
+          "index_tv": 25,
+          "country_neg_sentiment": 1100
+        },
+        {
+          "date": "2020-02-24",
+          "open": 1650,
+          "high": 1655,
+          "low": 1630,
+          "close": 1635,
+          "index_tv": 45,
+          "country_neg_sentiment": 1800
+        },
+        {
+          "date": "2020-02-25",
+          "open": 1640,
+          "high": 1645,
+          "low": 1610,
+          "close": 1615,
+          "index_tv": 55,
+          "country_neg_sentiment": 2200
+        },
+        {
+          "date": "2020-02-26",
+          "open": 1620,
+          "high": 1630,
+          "low": 1600,
+          "close": 1608,
+          "index_tv": 60,
+          "country_neg_sentiment": 2500
+        },
+        {
+          "date": "2020-02-27",
+          "open": 1600,
+          "high": 1610,
+          "low": 1570,
+          "close": 1575,
+          "index_tv": 85,
+          "country_neg_sentiment": 3100
+        },
+        {
+          "date": "2020-02-28",
+          "open": 1560,
+          "high": 1580,
+          "low": 1540,
+          "close": 1550,
+          "index_tv": 90,
+          "country_neg_sentiment": 3500
+        },
+        {
+          "date": "2020-03-02",
+          "open": 1560,
+          "high": 1590,
+          "low": 1550,
+          "close": 1585,
+          "index_tv": 75,
+          "country_neg_sentiment": 2800
+        },
+        {
+          "date": "2020-03-03",
+          "open": 1595,
+          "high": 1610,
+          "low": 1570,
+          "close": 1580,
+          "index_tv": 80,
+          "country_neg_sentiment": 2900
+        },
+        {
+          "date": "2020-03-04",
+          "open": 1590,
+          "high": 1605,
+          "low": 1580,
+          "close": 1600,
+          "index_tv": 65,
+          "country_neg_sentiment": 2400
+        },
+        {
+          "date": "2020-03-05",
+          "open": 1600,
+          "high": 1610,
+          "low": 1585,
+          "close": 1590,
+          "index_tv": 70,
+          "country_neg_sentiment": 2600
+        },
+        {
+          "date": "2020-03-06",
+          "open": 1570,
+          "high": 1590,
+          "low": 1550,
+          "close": 1565,
+          "index_tv": 85,
+          "country_neg_sentiment": 3200
+        },
+        {
+          "date": "2020-03-09",
+          "open": 1490,
+          "high": 1510,
+          "low": 1450,
+          "close": 1460,
+          "index_tv": 150,
+          "country_neg_sentiment": 6500
+        },
+        {
+          "date": "2020-03-10",
+          "open": 1480,
+          "high": 1500,
+          "low": 1460,
+          "close": 1490,
+          "index_tv": 120,
+          "country_neg_sentiment": 5000
+        },
+        {
+          "date": "2020-03-11",
+          "open": 1485,
+          "high": 1495,
+          "low": 1430,
+          "close": 1440,
+          "index_tv": 140,
+          "country_neg_sentiment": 5800
+        },
+        {
+          "date": "2020-03-12",
+          "open": 1390,
+          "high": 1410,
+          "low": 1310,
+          "close": 1320,
+          "index_tv": 220,
+          "country_neg_sentiment": 9500
+        },
+        {
+          "date": "2020-03-13",
+          "open": 1350,
+          "high": 1400,
+          "low": 1330,
+          "close": 1380,
+          "index_tv": 180,
+          "country_neg_sentiment": 7800
+        },
+        {
+          "date": "2020-03-16",
+          "open": 1280,
+          "high": 1310,
+          "low": 1200,
+          "close": 1210,
+          "index_tv": 350,
+          "country_neg_sentiment": 12000
+        }
+      ],
+      "efficiency": {
+        "hurst": 0.84,
+        "genton": 1.15,
+        "hall_wood": 1.28
+      },
+      "prediction": {
+        "forecast": "UP",
+        "probability": 0.58,
+        "feature_contributions": [
+          {
+            "feature": "INDEX_SMA",
+            "weight": 0.45,
+            "category": "technical"
+          },
+          {
+            "feature": "INDEX_RSI",
+            "weight": 0.2,
+            "category": "technical"
+          },
+          {
+            "feature": "COUNTRY_POS",
+            "weight": 0.05,
+            "category": "social"
+          },
+          {
+            "feature": "INDEX_MACD",
+            "weight": -0.15,
+            "category": "technical"
+          }
+        ]
+      }
+    },
+    "NDX": {
+      "info": {
+        "name": "Nasdaq 100",
+        "country": "United States",
+        "group": "Developed Markets"
+      },
+      "timeseries": [
+        {
+          "date": "2020-02-18",
+          "open": 9732,
+          "high": 9827,
+          "low": 9556,
+          "close": 9764,
+          "index_tv": 1233,
+          "country_neg_sentiment": 48926
+        },
+        {
+          "date": "2020-02-19",
+          "open": 9327,
+          "high": 9509,
+          "low": 9288,
+          "close": 9404,
+          "index_tv": 1515,
+          "country_neg_sentiment": 36523
+        },
+        {
+          "date": "2020-02-20",
+          "open": 9495,
+          "high": 9708,
+          "low": 9360,
+          "close": 9613,
+          "index_tv": 3503,
+          "country_neg_sentiment": 54116
+        },
+        {
+          "date": "2020-02-21",
+          "open": 9788,
+          "high": 9889,
+          "low": 9484,
+          "close": 9672,
+          "index_tv": 2165,
+          "country_neg_sentiment": 84306
+        },
+        {
+          "date": "2020-02-24",
+          "open": 9845,
+          "high": 9938,
+          "low": 9680,
+          "close": 9686,
+          "index_tv": 3866,
+          "country_neg_sentiment": 43838
+        },
+        {
+          "date": "2020-02-25",
+          "open": 9369,
+          "high": 9691,
+          "low": 9275,
+          "close": 9529,
+          "index_tv": 2729,
+          "country_neg_sentiment": 242211
+        },
+        {
+          "date": "2020-02-26",
+          "open": 9616,
+          "high": 9710,
+          "low": 9458,
+          "close": 9505,
+          "index_tv": 5238,
+          "country_neg_sentiment": 165900
+        },
+        {
+          "date": "2020-02-27",
+          "open": 9233,
+          "high": 9348,
+          "low": 9004,
+          "close": 9110,
+          "index_tv": 8209,
+          "country_neg_sentiment": 213825
+        },
+        {
+          "date": "2020-02-28",
+          "open": 9144,
+          "high": 9265,
+          "low": 9076,
+          "close": 9214,
+          "index_tv": 3068,
+          "country_neg_sentiment": 240037
+        },
+        {
+          "date": "2020-03-02",
+          "open": 8841,
+          "high": 9007,
+          "low": 8763,
+          "close": 8970,
+          "index_tv": 8468,
+          "country_neg_sentiment": 212990
+        },
+        {
+          "date": "2020-03-03",
+          "open": 9080,
+          "high": 9158,
+          "low": 8979,
+          "close": 9042,
+          "index_tv": 3194,
+          "country_neg_sentiment": 112167
+        },
+        {
+          "date": "2020-03-04",
+          "open": 8761,
+          "high": 8825,
+          "low": 8491,
+          "close": 8597,
+          "index_tv": 6467,
+          "country_neg_sentiment": 232979
+        },
+        {
+          "date": "2020-03-05",
+          "open": 8009,
+          "high": 8111,
+          "low": 8007,
+          "close": 8070,
+          "index_tv": 8772,
+          "country_neg_sentiment": 317220
+        },
+        {
+          "date": "2020-03-06",
+          "open": 7373,
+          "high": 7518,
+          "low": 7181,
+          "close": 7309,
+          "index_tv": 4887,
+          "country_neg_sentiment": 304401
+        },
+        {
+          "date": "2020-03-09",
+          "open": 6789,
+          "high": 6879,
+          "low": 6642,
+          "close": 6725,
+          "index_tv": 15892,
+          "country_neg_sentiment": 151965
+        },
+        {
+          "date": "2020-03-10",
+          "open": 6289,
+          "high": 6429,
+          "low": 6279,
+          "close": 6304,
+          "index_tv": 9513,
+          "country_neg_sentiment": 386257
+        },
+        {
+          "date": "2020-03-11",
+          "open": 6144,
+          "high": 6289,
+          "low": 6106,
+          "close": 6174,
+          "index_tv": 5422,
+          "country_neg_sentiment": 415492
+        },
+        {
+          "date": "2020-03-12",
+          "open": 5765,
+          "high": 5873,
+          "low": 5663,
+          "close": 5712,
+          "index_tv": 17106,
+          "country_neg_sentiment": 548396
+        },
+        {
+          "date": "2020-03-13",
+          "open": 5183,
+          "high": 5263,
+          "low": 5105,
+          "close": 5122,
+          "index_tv": 8568,
+          "country_neg_sentiment": 526689
+        },
+        {
+          "date": "2020-03-16",
+          "open": 4958,
+          "high": 5058,
+          "low": 4918,
+          "close": 5041,
+          "index_tv": 12855,
+          "country_neg_sentiment": 571185
+        }
+      ],
+      "efficiency": {
+        "hurst": 0.76,
+        "genton": 1.17,
+        "hall_wood": 1.07
+      },
+      "prediction": {
+        "forecast": "UP",
+        "probability": 0.75,
+        "feature_contributions": [
+          {
+            "feature": "INDEX_K (Stochastic)",
+            "weight": 0.34,
+            "category": "technical"
+          },
+          {
+            "feature": "COUNTRY_NEG (Twitter)",
+            "weight": -0.35,
+            "category": "social"
+          },
+          {
+            "feature": "INDEX_SMA",
+            "weight": 0.49,
+            "category": "technical"
+          },
+          {
+            "feature": "WORLD_NEG",
+            "weight": -0.36,
+            "category": "social"
+          }
+        ]
+      }
+    },
+    "DJI": {
+      "info": {
+        "name": "Dow Jones",
+        "country": "United States",
+        "group": "Developed Markets"
+      },
+      "timeseries": [
+        {
+          "date": "2020-02-18",
+          "open": 27834,
+          "high": 28158,
+          "low": 27134,
+          "close": 27557,
+          "index_tv": 1774,
+          "country_neg_sentiment": 29274
+        },
+        {
+          "date": "2020-02-19",
+          "open": 27476,
+          "high": 27806,
+          "low": 27085,
+          "close": 27742,
+          "index_tv": 1147,
+          "country_neg_sentiment": 68859
+        },
+        {
+          "date": "2020-02-20",
+          "open": 27577,
+          "high": 27737,
+          "low": 26714,
+          "close": 27216,
+          "index_tv": 3782,
+          "country_neg_sentiment": 102363
+        },
+        {
+          "date": "2020-02-21",
+          "open": 27528,
+          "high": 28050,
+          "low": 26975,
+          "close": 27384,
+          "index_tv": 2712,
+          "country_neg_sentiment": 165790
+        },
+        {
+          "date": "2020-02-24",
+          "open": 26184,
+          "high": 26528,
+          "low": 25402,
+          "close": 25880,
+          "index_tv": 3563,
+          "country_neg_sentiment": 175248
+        },
+        {
+          "date": "2020-02-25",
+          "open": 24664,
+          "high": 24793,
+          "low": 24156,
+          "close": 24471,
+          "index_tv": 2279,
+          "country_neg_sentiment": 246938
+        },
+        {
+          "date": "2020-02-26",
+          "open": 24323,
+          "high": 24802,
+          "low": 23746,
+          "close": 24088,
+          "index_tv": 4425,
+          "country_neg_sentiment": 123711
+        },
+        {
+          "date": "2020-02-27",
+          "open": 22975,
+          "high": 23184,
+          "low": 22618,
+          "close": 22722,
+          "index_tv": 8851,
+          "country_neg_sentiment": 190632
+        },
+        {
+          "date": "2020-02-28",
+          "open": 21601,
+          "high": 22031,
+          "low": 21543,
+          "close": 21832,
+          "index_tv": 9042,
+          "country_neg_sentiment": 97522
+        },
+        {
+          "date": "2020-03-02",
+          "open": 20804,
+          "high": 21004,
+          "low": 20791,
+          "close": 20912,
+          "index_tv": 10048,
+          "country_neg_sentiment": 393785
+        },
+        {
+          "date": "2020-03-03",
+          "open": 20194,
+          "high": 20794,
+          "low": 19891,
+          "close": 20583,
+          "index_tv": 7948,
+          "country_neg_sentiment": 263686
+        },
+        {
+          "date": "2020-03-04",
+          "open": 18717,
+          "high": 18978,
+          "low": 18412,
+          "close": 18486,
+          "index_tv": 10998,
+          "country_neg_sentiment": 246681
+        },
+        {
+          "date": "2020-03-05",
+          "open": 17657,
+          "high": 17993,
+          "low": 17597,
+          "close": 17918,
+          "index_tv": 12483,
+          "country_neg_sentiment": 367261
+        },
+        {
+          "date": "2020-03-06",
+          "open": 17286,
+          "high": 17624,
+          "low": 17121,
+          "close": 17527,
+          "index_tv": 14875,
+          "country_neg_sentiment": 210246
+        },
+        {
+          "date": "2020-03-09",
+          "open": 16686,
+          "high": 16757,
+          "low": 16367,
+          "close": 16492,
+          "index_tv": 8174,
+          "country_neg_sentiment": 146255
+        },
+        {
+          "date": "2020-03-10",
+          "open": 14880,
+          "high": 14932,
+          "low": 14507,
+          "close": 14778,
+          "index_tv": 11793,
+          "country_neg_sentiment": 558759
+        },
+        {
+          "date": "2020-03-11",
+          "open": 13333,
+          "high": 13586,
+          "low": 13048,
+          "close": 13196,
+          "index_tv": 10245,
+          "country_neg_sentiment": 365836
+        },
+        {
+          "date": "2020-03-12",
+          "open": 12181,
+          "high": 12464,
+          "low": 12181,
+          "close": 12230,
+          "index_tv": 12439,
+          "country_neg_sentiment": 359847
+        },
+        {
+          "date": "2020-03-13",
+          "open": 11477,
+          "high": 11651,
+          "low": 11321,
+          "close": 11603,
+          "index_tv": 19434,
+          "country_neg_sentiment": 727924
+        },
+        {
+          "date": "2020-03-16",
+          "open": 10482,
+          "high": 10560,
+          "low": 10317,
+          "close": 10455,
+          "index_tv": 14026,
+          "country_neg_sentiment": 709007
+        }
+      ],
+      "efficiency": {
+        "hurst": 0.7,
+        "genton": 1.28,
+        "hall_wood": 1.19
+      },
+      "prediction": {
+        "forecast": "DOWN",
+        "probability": 0.8,
+        "feature_contributions": [
+          {
+            "feature": "INDEX_K (Stochastic)",
+            "weight": 0.14,
+            "category": "technical"
+          },
+          {
+            "feature": "COUNTRY_NEG (Twitter)",
+            "weight": 0.47,
+            "category": "social"
+          },
+          {
+            "feature": "INDEX_SMA",
+            "weight": -0.39,
+            "category": "technical"
+          },
+          {
+            "feature": "WORLD_NEG",
+            "weight": 0.2,
+            "category": "social"
+          }
+        ]
+      }
+    },
+    "FCHI": {
+      "info": {
+        "name": "CAC 40",
+        "country": "France",
+        "group": "Developed Markets"
+      },
+      "timeseries": [
+        {
+          "date": "2020-02-18",
+          "open": 6054,
+          "high": 6170,
+          "low": 5987,
+          "close": 6083,
+          "index_tv": 996,
+          "country_neg_sentiment": 20345
+        },
+        {
+          "date": "2020-02-19",
+          "open": 6065,
+          "high": 6156,
+          "low": 5973,
+          "close": 6076,
+          "index_tv": 1751,
+          "country_neg_sentiment": 59824
+        },
+        {
+          "date": "2020-02-20",
+          "open": 5982,
+          "high": 6078,
+          "low": 5826,
+          "close": 5894,
+          "index_tv": 3216,
+          "country_neg_sentiment": 90439
+        },
+        {
+          "date": "2020-02-21",
+          "open": 5653,
+          "high": 5719,
+          "low": 5611,
+          "close": 5701,
+          "index_tv": 4045,
+          "country_neg_sentiment": 127464
+        },
+        {
+          "date": "2020-02-24",
+          "open": 5744,
+          "high": 5808,
+          "low": 5574,
+          "close": 5687,
+          "index_tv": 4684,
+          "country_neg_sentiment": 165419
+        },
+        {
+          "date": "2020-02-25",
+          "open": 5717,
+          "high": 5768,
+          "low": 5653,
+          "close": 5690,
+          "index_tv": 3068,
+          "country_neg_sentiment": 54503
+        },
+        {
+          "date": "2020-02-26",
+          "open": 5559,
+          "high": 5633,
+          "low": 5413,
+          "close": 5477,
+          "index_tv": 3036,
+          "country_neg_sentiment": 287506
+        },
+        {
+          "date": "2020-02-27",
+          "open": 5216,
+          "high": 5291,
+          "low": 5197,
+          "close": 5206,
+          "index_tv": 6217,
+          "country_neg_sentiment": 284910
+        },
+        {
+          "date": "2020-02-28",
+          "open": 4978,
+          "high": 5092,
+          "low": 4973,
+          "close": 5066,
+          "index_tv": 5899,
+          "country_neg_sentiment": 333203
+        },
+        {
+          "date": "2020-03-02",
+          "open": 5086,
+          "high": 5170,
+          "low": 5037,
+          "close": 5084,
+          "index_tv": 9754,
+          "country_neg_sentiment": 106855
+        },
+        {
+          "date": "2020-03-03",
+          "open": 5144,
+          "high": 5273,
+          "low": 5133,
+          "close": 5236,
+          "index_tv": 10461,
+          "country_neg_sentiment": 261893
+        },
+        {
+          "date": "2020-03-04",
+          "open": 5121,
+          "high": 5278,
+          "low": 5024,
+          "close": 5212,
+          "index_tv": 7818,
+          "country_neg_sentiment": 489655
+        },
+        {
+          "date": "2020-03-05",
+          "open": 5043,
+          "high": 5146,
+          "low": 5010,
+          "close": 5125,
+          "index_tv": 10106,
+          "country_neg_sentiment": 108426
+        },
+        {
+          "date": "2020-03-06",
+          "open": 4881,
+          "high": 4971,
+          "low": 4856,
+          "close": 4909,
+          "index_tv": 9051,
+          "country_neg_sentiment": 523497
+        },
+        {
+          "date": "2020-03-09",
+          "open": 4438,
+          "high": 4503,
+          "low": 4392,
+          "close": 4393,
+          "index_tv": 12989,
+          "country_neg_sentiment": 367110
+        },
+        {
+          "date": "2020-03-10",
+          "open": 4254,
+          "high": 4332,
+          "low": 4181,
+          "close": 4246,
+          "index_tv": 7254,
+          "country_neg_sentiment": 585566
+        },
+        {
+          "date": "2020-03-11",
+          "open": 3920,
+          "high": 3964,
+          "low": 3918,
+          "close": 3962,
+          "index_tv": 13619,
+          "country_neg_sentiment": 298476
+        },
+        {
+          "date": "2020-03-12",
+          "open": 3808,
+          "high": 3911,
+          "low": 3794,
+          "close": 3855,
+          "index_tv": 13260,
+          "country_neg_sentiment": 489503
+        },
+        {
+          "date": "2020-03-13",
+          "open": 3665,
+          "high": 3742,
+          "low": 3593,
+          "close": 3681,
+          "index_tv": 13438,
+          "country_neg_sentiment": 284950
+        },
+        {
+          "date": "2020-03-16",
+          "open": 3386,
+          "high": 3394,
+          "low": 3309,
+          "close": 3360,
+          "index_tv": 20046,
+          "country_neg_sentiment": 578720
+        }
+      ],
+      "efficiency": {
+        "hurst": 0.8,
+        "genton": 1.43,
+        "hall_wood": 1.32
+      },
+      "prediction": {
+        "forecast": "UP",
+        "probability": 0.65,
+        "feature_contributions": [
+          {
+            "feature": "INDEX_K (Stochastic)",
+            "weight": 0.14,
+            "category": "technical"
+          },
+          {
+            "feature": "COUNTRY_NEG (Twitter)",
+            "weight": -0.49,
+            "category": "social"
+          },
+          {
+            "feature": "INDEX_SMA",
+            "weight": -0.1,
+            "category": "technical"
+          },
+          {
+            "feature": "WORLD_NEG",
+            "weight": -0.4,
+            "category": "social"
+          }
+        ]
+      }
+    },
+    "GDAXI": {
+      "info": {
+        "name": "DAX",
+        "country": "Germany",
+        "group": "Developed Markets"
+      },
+      "timeseries": [
+        {
+          "date": "2020-02-18",
+          "open": 13672,
+          "high": 13935,
+          "low": 13485,
+          "close": 13513,
+          "index_tv": 1905,
+          "country_neg_sentiment": 15094
+        },
+        {
+          "date": "2020-02-19",
+          "open": 13530,
+          "high": 13864,
+          "low": 13363,
+          "close": 13780,
+          "index_tv": 1162,
+          "country_neg_sentiment": 19538
+        },
+        {
+          "date": "2020-02-20",
+          "open": 14001,
+          "high": 14141,
+          "low": 13849,
+          "close": 13856,
+          "index_tv": 1783,
+          "country_neg_sentiment": 56947
+        },
+        {
+          "date": "2020-02-21",
+          "open": 13813,
+          "high": 13908,
+          "low": 13378,
+          "close": 13635,
+          "index_tv": 1369,
+          "country_neg_sentiment": 73195
+        },
+        {
+          "date": "2020-02-24",
+          "open": 13016,
+          "high": 13209,
+          "low": 12752,
+          "close": 12972,
+          "index_tv": 5162,
+          "country_neg_sentiment": 93161
+        },
+        {
+          "date": "2020-02-25",
+          "open": 12536,
+          "high": 12705,
+          "low": 12293,
+          "close": 12652,
+          "index_tv": 4441,
+          "country_neg_sentiment": 182249
+        },
+        {
+          "date": "2020-02-26",
+          "open": 12709,
+          "high": 12828,
+          "low": 12518,
+          "close": 12740,
+          "index_tv": 5095,
+          "country_neg_sentiment": 254140
+        },
+        {
+          "date": "2020-02-27",
+          "open": 12432,
+          "high": 12520,
+          "low": 12309,
+          "close": 12386,
+          "index_tv": 6536,
+          "country_neg_sentiment": 274872
+        },
+        {
+          "date": "2020-02-28",
+          "open": 12574,
+          "high": 12770,
+          "low": 12479,
+          "close": 12621,
+          "index_tv": 5002,
+          "country_neg_sentiment": 318085
+        },
+        {
+          "date": "2020-03-02",
+          "open": 12037,
+          "high": 12118,
+          "low": 11764,
+          "close": 11804,
+          "index_tv": 4387,
+          "country_neg_sentiment": 195590
+        },
+        {
+          "date": "2020-03-03",
+          "open": 11287,
+          "high": 11480,
+          "low": 11103,
+          "close": 11453,
+          "index_tv": 3614,
+          "country_neg_sentiment": 237039
+        },
+        {
+          "date": "2020-03-04",
+          "open": 11033,
+          "high": 11192,
+          "low": 10851,
+          "close": 10877,
+          "index_tv": 12194,
+          "country_neg_sentiment": 120084
+        },
+        {
+          "date": "2020-03-05",
+          "open": 10407,
+          "high": 10522,
+          "low": 10321,
+          "close": 10483,
+          "index_tv": 4466,
+          "country_neg_sentiment": 156175
+        },
+        {
+          "date": "2020-03-06",
+          "open": 10063,
+          "high": 10254,
+          "low": 9941,
+          "close": 10180,
+          "index_tv": 4886,
+          "country_neg_sentiment": 294125
+        },
+        {
+          "date": "2020-03-09",
+          "open": 9439,
+          "high": 9490,
+          "low": 9126,
+          "close": 9292,
+          "index_tv": 9070,
+          "country_neg_sentiment": 216289
+        },
+        {
+          "date": "2020-03-10",
+          "open": 8471,
+          "high": 8629,
+          "low": 8242,
+          "close": 8343,
+          "index_tv": 9707,
+          "country_neg_sentiment": 293514
+        },
+        {
+          "date": "2020-03-11",
+          "open": 8053,
+          "high": 8189,
+          "low": 7908,
+          "close": 8029,
+          "index_tv": 8986,
+          "country_neg_sentiment": 289389
+        },
+        {
+          "date": "2020-03-12",
+          "open": 7306,
+          "high": 7432,
+          "low": 7286,
+          "close": 7334,
+          "index_tv": 9825,
+          "country_neg_sentiment": 387379
+        },
+        {
+          "date": "2020-03-13",
+          "open": 6772,
+          "high": 6803,
+          "low": 6697,
+          "close": 6780,
+          "index_tv": 14262,
+          "country_neg_sentiment": 222374
+        },
+        {
+          "date": "2020-03-16",
+          "open": 6360,
+          "high": 6431,
+          "low": 6252,
+          "close": 6420,
+          "index_tv": 20898,
+          "country_neg_sentiment": 495194
+        }
+      ],
+      "efficiency": {
+        "hurst": 0.7,
+        "genton": 1.25,
+        "hall_wood": 1.19
+      },
+      "prediction": {
+        "forecast": "DOWN",
+        "probability": 0.8,
+        "feature_contributions": [
+          {
+            "feature": "INDEX_K (Stochastic)",
+            "weight": 0.39,
+            "category": "technical"
+          },
+          {
+            "feature": "COUNTRY_NEG (Twitter)",
+            "weight": 0.02,
+            "category": "social"
+          },
+          {
+            "feature": "INDEX_SMA",
+            "weight": 0.11,
+            "category": "technical"
+          },
+          {
+            "feature": "WORLD_NEG",
+            "weight": -0.08,
+            "category": "social"
+          }
+        ]
+      }
+    },
+    "FTSE": {
+      "info": {
+        "name": "FTSE 100",
+        "country": "United Kingdom",
+        "group": "Developed Markets"
+      },
+      "timeseries": [
+        {
+          "date": "2020-02-18",
+          "open": 7352,
+          "high": 7461,
+          "low": 7169,
+          "close": 7219,
+          "index_tv": 1672,
+          "country_neg_sentiment": 13021
+        },
+        {
+          "date": "2020-02-19",
+          "open": 7011,
+          "high": 7127,
+          "low": 6954,
+          "close": 7124,
+          "index_tv": 2853,
+          "country_neg_sentiment": 82884
+        },
+        {
+          "date": "2020-02-20",
+          "open": 6801,
+          "high": 6808,
+          "low": 6787,
+          "close": 6794,
+          "index_tv": 3556,
+          "country_neg_sentiment": 96664
+        },
+        {
+          "date": "2020-02-21",
+          "open": 6923,
+          "high": 6990,
+          "low": 6919,
+          "close": 6933,
+          "index_tv": 2971,
+          "country_neg_sentiment": 133098
+        },
+        {
+          "date": "2020-02-24",
+          "open": 6887,
+          "high": 7129,
+          "low": 6833,
+          "close": 6997,
+          "index_tv": 2804,
+          "country_neg_sentiment": 201210
+        },
+        {
+          "date": "2020-02-25",
+          "open": 6799,
+          "high": 6875,
+          "low": 6637,
+          "close": 6674,
+          "index_tv": 5691,
+          "country_neg_sentiment": 179669
+        },
+        {
+          "date": "2020-02-26",
+          "open": 6410,
+          "high": 6445,
+          "low": 6241,
+          "close": 6291,
+          "index_tv": 4127,
+          "country_neg_sentiment": 234789
+        },
+        {
+          "date": "2020-02-27",
+          "open": 6119,
+          "high": 6142,
+          "low": 6050,
+          "close": 6133,
+          "index_tv": 4840,
+          "country_neg_sentiment": 196005
+        },
+        {
+          "date": "2020-02-28",
+          "open": 6074,
+          "high": 6246,
+          "low": 6072,
+          "close": 6155,
+          "index_tv": 6956,
+          "country_neg_sentiment": 307740
+        },
+        {
+          "date": "2020-03-02",
+          "open": 6225,
+          "high": 6356,
+          "low": 6189,
+          "close": 6277,
+          "index_tv": 9469,
+          "country_neg_sentiment": 140953
+        },
+        {
+          "date": "2020-03-03",
+          "open": 6292,
+          "high": 6487,
+          "low": 6198,
+          "close": 6387,
+          "index_tv": 11104,
+          "country_neg_sentiment": 228073
+        },
+        {
+          "date": "2020-03-04",
+          "open": 6205,
+          "high": 6327,
+          "low": 6083,
+          "close": 6186,
+          "index_tv": 12092,
+          "country_neg_sentiment": 228757
+        },
+        {
+          "date": "2020-03-05",
+          "open": 5748,
+          "high": 5861,
+          "low": 5596,
+          "close": 5651,
+          "index_tv": 7524,
+          "country_neg_sentiment": 247455
+        },
+        {
+          "date": "2020-03-06",
+          "open": 5270,
+          "high": 5401,
+          "low": 5261,
+          "close": 5368,
+          "index_tv": 10610,
+          "country_neg_sentiment": 252120
+        },
+        {
+          "date": "2020-03-09",
+          "open": 5059,
+          "high": 5120,
+          "low": 4975,
+          "close": 5040,
+          "index_tv": 12146,
+          "country_neg_sentiment": 599684
+        },
+        {
+          "date": "2020-03-10",
+          "open": 4558,
+          "high": 4593,
+          "low": 4538,
+          "close": 4590,
+          "index_tv": 13990,
+          "country_neg_sentiment": 565125
+        },
+        {
+          "date": "2020-03-11",
+          "open": 4316,
+          "high": 4399,
+          "low": 4270,
+          "close": 4327,
+          "index_tv": 8313,
+          "country_neg_sentiment": 526674
+        },
+        {
+          "date": "2020-03-12",
+          "open": 4082,
+          "high": 4191,
+          "low": 4051,
+          "close": 4131,
+          "index_tv": 12687,
+          "country_neg_sentiment": 324096
+        },
+        {
+          "date": "2020-03-13",
+          "open": 3759,
+          "high": 3809,
+          "low": 3684,
+          "close": 3703,
+          "index_tv": 17614,
+          "country_neg_sentiment": 538358
+        },
+        {
+          "date": "2020-03-16",
+          "open": 3346,
+          "high": 3351,
+          "low": 3278,
+          "close": 3315,
+          "index_tv": 12169,
+          "country_neg_sentiment": 478310
+        }
+      ],
+      "efficiency": {
+        "hurst": 0.46,
+        "genton": 1.48,
+        "hall_wood": 1.35
+      },
+      "prediction": {
+        "forecast": "DOWN",
+        "probability": 0.78,
+        "feature_contributions": [
+          {
+            "feature": "INDEX_K (Stochastic)",
+            "weight": -0.41,
+            "category": "technical"
+          },
+          {
+            "feature": "COUNTRY_NEG (Twitter)",
+            "weight": 0.26,
+            "category": "social"
+          },
+          {
+            "feature": "INDEX_SMA",
+            "weight": -0.38,
+            "category": "technical"
+          },
+          {
+            "feature": "WORLD_NEG",
+            "weight": 0.23,
+            "category": "social"
+          }
+        ]
+      }
+    },
+    "N225": {
+      "info": {
+        "name": "Nikkei 225",
+        "country": "Japan",
+        "group": "Developed Markets"
+      },
+      "timeseries": [
+        {
+          "date": "2020-02-18",
+          "open": 22286,
+          "high": 23129,
+          "low": 21997,
+          "close": 22714,
+          "index_tv": 761,
+          "country_neg_sentiment": 19473
+        },
+        {
+          "date": "2020-02-19",
+          "open": 22431,
+          "high": 22528,
+          "low": 22004,
+          "close": 22419,
+          "index_tv": 2459,
+          "country_neg_sentiment": 55464
+        },
+        {
+          "date": "2020-02-20",
+          "open": 22636,
+          "high": 22888,
+          "low": 22264,
+          "close": 22822,
+          "index_tv": 1279,
+          "country_neg_sentiment": 127328
+        },
+        {
+          "date": "2020-02-21",
+          "open": 21817,
+          "high": 22097,
+          "low": 21414,
+          "close": 21850,
+          "index_tv": 3193,
+          "country_neg_sentiment": 78097
+        },
+        {
+          "date": "2020-02-24",
+          "open": 21262,
+          "high": 21299,
+          "low": 20915,
+          "close": 21004,
+          "index_tv": 2525,
+          "country_neg_sentiment": 101052
+        },
+        {
+          "date": "2020-02-25",
+          "open": 20696,
+          "high": 21064,
+          "low": 20472,
+          "close": 20930,
+          "index_tv": 4784,
+          "country_neg_sentiment": 104438
+        },
+        {
+          "date": "2020-02-26",
+          "open": 21133,
+          "high": 21815,
+          "low": 21054,
+          "close": 21478,
+          "index_tv": 6388,
+          "country_neg_sentiment": 77708
+        },
+        {
+          "date": "2020-02-27",
+          "open": 21697,
+          "high": 21949,
+          "low": 21323,
+          "close": 21669,
+          "index_tv": 7413,
+          "country_neg_sentiment": 290561
+        },
+        {
+          "date": "2020-02-28",
+          "open": 20600,
+          "high": 20735,
+          "low": 20281,
+          "close": 20592,
+          "index_tv": 6582,
+          "country_neg_sentiment": 142144
+        },
+        {
+          "date": "2020-03-02",
+          "open": 19937,
+          "high": 20476,
+          "low": 19539,
+          "close": 20169,
+          "index_tv": 7552,
+          "country_neg_sentiment": 119623
+        },
+        {
+          "date": "2020-03-03",
+          "open": 19289,
+          "high": 19721,
+          "low": 18939,
+          "close": 19583,
+          "index_tv": 11816,
+          "country_neg_sentiment": 414398
+        },
+        {
+          "date": "2020-03-04",
+          "open": 18182,
+          "high": 18346,
+          "low": 17850,
+          "close": 18312,
+          "index_tv": 4854,
+          "country_neg_sentiment": 139353
+        },
+        {
+          "date": "2020-03-05",
+          "open": 16912,
+          "high": 17202,
+          "low": 16423,
+          "close": 16732,
+          "index_tv": 7697,
+          "country_neg_sentiment": 453073
+        },
+        {
+          "date": "2020-03-06",
+          "open": 15602,
+          "high": 15952,
+          "low": 15379,
+          "close": 15746,
+          "index_tv": 4059,
+          "country_neg_sentiment": 123653
+        },
+        {
+          "date": "2020-03-09",
+          "open": 14495,
+          "high": 14628,
+          "low": 14245,
+          "close": 14356,
+          "index_tv": 7043,
+          "country_neg_sentiment": 147883
+        },
+        {
+          "date": "2020-03-10",
+          "open": 13692,
+          "high": 13902,
+          "low": 13478,
+          "close": 13575,
+          "index_tv": 5470,
+          "country_neg_sentiment": 273189
+        },
+        {
+          "date": "2020-03-11",
+          "open": 13041,
+          "high": 13295,
+          "low": 12933,
+          "close": 13035,
+          "index_tv": 10870,
+          "country_neg_sentiment": 283310
+        },
+        {
+          "date": "2020-03-12",
+          "open": 12226,
+          "high": 12544,
+          "low": 12127,
+          "close": 12443,
+          "index_tv": 11305,
+          "country_neg_sentiment": 492828
+        },
+        {
+          "date": "2020-03-13",
+          "open": 11894,
+          "high": 12055,
+          "low": 11867,
+          "close": 11908,
+          "index_tv": 6816,
+          "country_neg_sentiment": 746644
+        },
+        {
+          "date": "2020-03-16",
+          "open": 10928,
+          "high": 11340,
+          "low": 10854,
+          "close": 11137,
+          "index_tv": 8165,
+          "country_neg_sentiment": 523031
+        }
+      ],
+      "efficiency": {
+        "hurst": 0.67,
+        "genton": 1.56,
+        "hall_wood": 1.42
+      },
+      "prediction": {
+        "forecast": "UP",
+        "probability": 0.59,
+        "feature_contributions": [
+          {
+            "feature": "INDEX_K (Stochastic)",
+            "weight": 0.18,
+            "category": "technical"
+          },
+          {
+            "feature": "COUNTRY_NEG (Twitter)",
+            "weight": -0.1,
+            "category": "social"
+          },
+          {
+            "feature": "INDEX_SMA",
+            "weight": -0.44,
+            "category": "technical"
+          },
+          {
+            "feature": "WORLD_NEG",
+            "weight": 0.2,
+            "category": "social"
+          }
+        ]
+      }
+    },
+    "BVSP": {
+      "info": {
+        "name": "Bovespa",
+        "country": "Brazil",
+        "group": "Emerging Markets"
+      },
+      "timeseries": [
+        {
+          "date": "2020-02-18",
+          "open": 109383,
+          "high": 110311,
+          "low": 107977,
+          "close": 109988,
+          "index_tv": 1228,
+          "country_neg_sentiment": 22198
+        },
+        {
+          "date": "2020-02-19",
+          "open": 111610,
+          "high": 114078,
+          "low": 111433,
+          "close": 113399,
+          "index_tv": 2712,
+          "country_neg_sentiment": 83952
+        },
+        {
+          "date": "2020-02-20",
+          "open": 110451,
+          "high": 110483,
+          "low": 107149,
+          "close": 108479,
+          "index_tv": 1909,
+          "country_neg_sentiment": 72831
+        },
+        {
+          "date": "2020-02-21",
+          "open": 105202,
+          "high": 107861,
+          "low": 104686,
+          "close": 106275,
+          "index_tv": 3158,
+          "country_neg_sentiment": 155588
+        },
+        {
+          "date": "2020-02-24",
+          "open": 106024,
+          "high": 107131,
+          "low": 103551,
+          "close": 105154,
+          "index_tv": 5748,
+          "country_neg_sentiment": 160111
+        },
+        {
+          "date": "2020-02-25",
+          "open": 101109,
+          "high": 103126,
+          "low": 100234,
+          "close": 103041,
+          "index_tv": 6990,
+          "country_neg_sentiment": 113876
+        },
+        {
+          "date": "2020-02-26",
+          "open": 99849,
+          "high": 101328,
+          "low": 98891,
+          "close": 101211,
+          "index_tv": 6000,
+          "country_neg_sentiment": 215307
+        },
+        {
+          "date": "2020-02-27",
+          "open": 96716,
+          "high": 96956,
+          "low": 94840,
+          "close": 96705,
+          "index_tv": 4890,
+          "country_neg_sentiment": 315541
+        },
+        {
+          "date": "2020-02-28",
+          "open": 97407,
+          "high": 99018,
+          "low": 96617,
+          "close": 98137,
+          "index_tv": 4136,
+          "country_neg_sentiment": 227705
+        },
+        {
+          "date": "2020-03-02",
+          "open": 97366,
+          "high": 99091,
+          "low": 95629,
+          "close": 98803,
+          "index_tv": 8828,
+          "country_neg_sentiment": 327585
+        },
+        {
+          "date": "2020-03-03",
+          "open": 96211,
+          "high": 96989,
+          "low": 92680,
+          "close": 94566,
+          "index_tv": 7939,
+          "country_neg_sentiment": 180500
+        },
+        {
+          "date": "2020-03-04",
+          "open": 85485,
+          "high": 86310,
+          "low": 84247,
+          "close": 84653,
+          "index_tv": 12645,
+          "country_neg_sentiment": 350285
+        },
+        {
+          "date": "2020-03-05",
+          "open": 76865,
+          "high": 78067,
+          "low": 75737,
+          "close": 78036,
+          "index_tv": 12328,
+          "country_neg_sentiment": 149899
+        },
+        {
+          "date": "2020-03-06",
+          "open": 72600,
+          "high": 73760,
+          "low": 70499,
+          "close": 71932,
+          "index_tv": 4964,
+          "country_neg_sentiment": 249546
+        },
+        {
+          "date": "2020-03-09",
+          "open": 68921,
+          "high": 69694,
+          "low": 68837,
+          "close": 68898,
+          "index_tv": 12097,
+          "country_neg_sentiment": 233505
+        },
+        {
+          "date": "2020-03-10",
+          "open": 66206,
+          "high": 67622,
+          "low": 65451,
+          "close": 67108,
+          "index_tv": 6337,
+          "country_neg_sentiment": 401456
+        },
+        {
+          "date": "2020-03-11",
+          "open": 61534,
+          "high": 62090,
+          "low": 60689,
+          "close": 61244,
+          "index_tv": 14501,
+          "country_neg_sentiment": 516064
+        },
+        {
+          "date": "2020-03-12",
+          "open": 59964,
+          "high": 61709,
+          "low": 59130,
+          "close": 60549,
+          "index_tv": 12630,
+          "country_neg_sentiment": 371749
+        },
+        {
+          "date": "2020-03-13",
+          "open": 58130,
+          "high": 58527,
+          "low": 57019,
+          "close": 57404,
+          "index_tv": 10356,
+          "country_neg_sentiment": 629548
+        },
+        {
+          "date": "2020-03-16",
+          "open": 52201,
+          "high": 52473,
+          "low": 50783,
+          "close": 51200,
+          "index_tv": 18175,
+          "country_neg_sentiment": 281600
+        }
+      ],
+      "efficiency": {
+        "hurst": 0.77,
+        "genton": 1.39,
+        "hall_wood": 1.32
+      },
+      "prediction": {
+        "forecast": "DOWN",
+        "probability": 0.58,
+        "feature_contributions": [
+          {
+            "feature": "INDEX_K (Stochastic)",
+            "weight": 0.3,
+            "category": "technical"
+          },
+          {
+            "feature": "COUNTRY_NEG (Twitter)",
+            "weight": 0.08,
+            "category": "social"
+          },
+          {
+            "feature": "INDEX_SMA",
+            "weight": 0.33,
+            "category": "technical"
+          },
+          {
+            "feature": "WORLD_NEG",
+            "weight": 0.23,
+            "category": "social"
+          }
+        ]
+      }
+    },
+    "MXX": {
+      "info": {
+        "name": "S&P BMV IPC",
+        "country": "Mexico",
+        "group": "Emerging Markets"
+      },
+      "timeseries": [
+        {
+          "date": "2020-02-18",
+          "open": 44667,
+          "high": 44915,
+          "low": 44142,
+          "close": 44380,
+          "index_tv": 629,
+          "country_neg_sentiment": 48177
+        },
+        {
+          "date": "2020-02-19",
+          "open": 42814,
+          "high": 43854,
+          "low": 42626,
+          "close": 43354,
+          "index_tv": 959,
+          "country_neg_sentiment": 51310
+        },
+        {
+          "date": "2020-02-20",
+          "open": 43265,
+          "high": 43658,
+          "low": 42511,
+          "close": 42513,
+          "index_tv": 3777,
+          "country_neg_sentiment": 96244
+        },
+        {
+          "date": "2020-02-21",
+          "open": 42003,
+          "high": 42752,
+          "low": 41478,
+          "close": 42294,
+          "index_tv": 3662,
+          "country_neg_sentiment": 151782
+        },
+        {
+          "date": "2020-02-24",
+          "open": 43053,
+          "high": 43306,
+          "low": 42732,
+          "close": 42808,
+          "index_tv": 4490,
+          "country_neg_sentiment": 112025
+        },
+        {
+          "date": "2020-02-25",
+          "open": 41012,
+          "high": 41671,
+          "low": 40597,
+          "close": 41106,
+          "index_tv": 5867,
+          "country_neg_sentiment": 209062
+        },
+        {
+          "date": "2020-02-26",
+          "open": 40508,
+          "high": 41200,
+          "low": 39834,
+          "close": 40833,
+          "index_tv": 5815,
+          "country_neg_sentiment": 162697
+        },
+        {
+          "date": "2020-02-27",
+          "open": 41205,
+          "high": 41632,
+          "low": 40685,
+          "close": 41129,
+          "index_tv": 4957,
+          "country_neg_sentiment": 73778
+        },
+        {
+          "date": "2020-02-28",
+          "open": 40368,
+          "high": 41129,
+          "low": 40211,
+          "close": 40870,
+          "index_tv": 3620,
+          "country_neg_sentiment": 312428
+        },
+        {
+          "date": "2020-03-02",
+          "open": 40719,
+          "high": 40988,
+          "low": 40106,
+          "close": 40256,
+          "index_tv": 10585,
+          "country_neg_sentiment": 193293
+        },
+        {
+          "date": "2020-03-03",
+          "open": 40314,
+          "high": 40915,
+          "low": 38959,
+          "close": 39562,
+          "index_tv": 8221,
+          "country_neg_sentiment": 341185
+        },
+        {
+          "date": "2020-03-04",
+          "open": 37609,
+          "high": 38010,
+          "low": 36696,
+          "close": 37011,
+          "index_tv": 7747,
+          "country_neg_sentiment": 396375
+        },
+        {
+          "date": "2020-03-05",
+          "open": 36127,
+          "high": 36741,
+          "low": 35812,
+          "close": 36567,
+          "index_tv": 7627,
+          "country_neg_sentiment": 253217
+        },
+        {
+          "date": "2020-03-06",
+          "open": 33822,
+          "high": 34153,
+          "low": 33764,
+          "close": 33971,
+          "index_tv": 7878,
+          "country_neg_sentiment": 259708
+        },
+        {
+          "date": "2020-03-09",
+          "open": 32712,
+          "high": 32887,
+          "low": 31802,
+          "close": 32259,
+          "index_tv": 12339,
+          "country_neg_sentiment": 386494
+        },
+        {
+          "date": "2020-03-10",
+          "open": 29684,
+          "high": 30241,
+          "low": 29260,
+          "close": 29327,
+          "index_tv": 5803,
+          "country_neg_sentiment": 465444
+        },
+        {
+          "date": "2020-03-11",
+          "open": 28181,
+          "high": 28491,
+          "low": 27644,
+          "close": 28471,
+          "index_tv": 17186,
+          "country_neg_sentiment": 459771
+        },
+        {
+          "date": "2020-03-12",
+          "open": 27652,
+          "high": 28254,
+          "low": 27621,
+          "close": 28126,
+          "index_tv": 14133,
+          "country_neg_sentiment": 469380
+        },
+        {
+          "date": "2020-03-13",
+          "open": 27408,
+          "high": 27410,
+          "low": 26853,
+          "close": 27088,
+          "index_tv": 12659,
+          "country_neg_sentiment": 710862
+        },
+        {
+          "date": "2020-03-16",
+          "open": 24931,
+          "high": 25694,
+          "low": 24770,
+          "close": 25324,
+          "index_tv": 19804,
+          "country_neg_sentiment": 583145
+        }
+      ],
+      "efficiency": {
+        "hurst": 0.8,
+        "genton": 1.33,
+        "hall_wood": 1.22
+      },
+      "prediction": {
+        "forecast": "DOWN",
+        "probability": 0.81,
+        "feature_contributions": [
+          {
+            "feature": "INDEX_K (Stochastic)",
+            "weight": -0.27,
+            "category": "technical"
+          },
+          {
+            "feature": "COUNTRY_NEG (Twitter)",
+            "weight": -0.41,
+            "category": "social"
+          },
+          {
+            "feature": "INDEX_SMA",
+            "weight": -0.02,
+            "category": "technical"
+          },
+          {
+            "feature": "WORLD_NEG",
+            "weight": -0.48,
+            "category": "social"
+          }
+        ]
+      }
+    }
+  }
+}

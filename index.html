@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Markets Visualizer | Exp. 5</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ECharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-panel">
+            <header>
+                <div class="logo">
+                    <img src="logo.png" alt="Janus Logo" class="brand-logo">
+                    <div class="logo-text">
+                        <h1>Janus</h1>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Navegación por Tabs -->
+            <nav class="tabs">
+                <button class="tab-button active" data-target="tab-1">Visión Global</button>
+                <button class="tab-button" data-target="tab-2">Detalle de Índice</button>
+                <button class="tab-button" data-target="tab-3">Explicabilidad</button>
+            </nav>
+
+            <!-- Buscador oculto por defecto en Tab 1 -->
+            <div class="search-container" id="globalSearch" style="display: none;">
+                <label for="assetSelector" class="select-label">Seleccionar Índice:</label>
+                <select id="assetSelector" class="custom-select">
+                    <!-- Options populated by JS -->
+                </select>
+            </div>
+
+            <footer class="academic-disclaimer">
+                <div class="footer-content">
+                    <img src="university.png" alt="Pontificia Universidad Javeriana" class="uni-logo">
+                    <p>⚠️ <strong>Disclaimer:</strong> This is an academic research project. The data, predictive models, and insights presented on this dashboard are for educational purposes only and do not constitute financial, investment, or trading advice.</p>
+                </div>
+            </footer>
+        </aside>
+
+        <main class="main-content">
+            <div class="tabs-container">
+                <!-- TAB 1: VISIÓN GLOBAL -->
+                <div id="tab-1" class="tab-pane active">
+                    <div class="main-grid tab-1-grid">
+                        <section class="glass-panel correlation-section">
+                            <h2>Market Correlation Network</h2>
+                            <div id="correlationChart" class="chart-container flex-chart"></div>
+                        </section>
+                        <section class="glass-panel efficiency-section">
+                            <h2>Market Efficiency</h2>
+                            <div id="efficiencyChart" class="chart-container flex-chart"></div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- TAB 2: DETALLE DE ÍNDICE -->
+                <div id="tab-2" class="tab-pane">
+                    <div class="main-grid tab-2-grid">
+                        <!-- Gráficos Principales -->
+                        <section class="glass-panel timeseries-section">
+                            <div class="section-header">
+                                <h2><span class="activeAssetName">S&P 500</span> Price & Sentiment</h2>
+                            </div>
+                            <div class="charts-stack">
+                                <div id="priceChart" class="chart-container flex-chart-large"></div>
+                                <div id="sentimentChart" class="chart-container flex-chart-small"></div>
+                            </div>
+                        </section>
+                        
+                        <!-- Panel Lateral -->
+                        <div class="side-panel">
+                            <!-- Predicción -->
+                            <section class="glass-panel prediction-card-section">
+                                <h2>Next Day Forecast</h2>
+                                <div class="prediction-card">
+                                    <div id="predictionBadge" class="prediction-badge">--</div>
+                                    <div class="prediction-prob">Probability: <span id="predictionProb">0%</span></div>
+                                </div>
+                            </section>
+                            
+                            <!-- Correlaciones -->
+                            <section class="glass-panel correlations-list-section">
+                                <h2>Relación con el Mercado</h2>
+                                <div id="correlationsList" class="correlations-list">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: EXPLICABILIDAD -->
+                <div id="tab-3" class="tab-pane">
+                    <div class="main-grid tab-3-grid">
+                        <section class="glass-panel prediction-section">
+                            <h2><span class="activeAssetName">S&P 500</span> - Prediction Factors</h2>
+                            <div class="charts-stack">
+                                <div>
+                                    <h3>Technical vs Social Split</h3>
+                                    <div id="splitChart" class="chart-container flex-chart-small"></div>
+                                </div>
+                                <div>
+                                    <h3>Feature Contributions</h3>
+                                    <div id="featureImportanceChart" class="chart-container flex-chart-large"></div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
