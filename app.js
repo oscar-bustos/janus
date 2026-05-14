@@ -1,30 +1,37 @@
 // Chart Instances
-let networkChart, efficiencyChart, priceChart, sentimentChart, splitChart, featureChart;
+let networkChart, efficiencyChart, priceChart, sentimentChart, shapChart, moodGaugeChart, rollingEfficiencyChart, hierarchyChart, treemapChart;
 let globalData = null;
 
 // Initialize ECharts instances
 function initCharts() {
     networkChart = echarts.init(document.getElementById('correlationChart'), 'dark');
     efficiencyChart = echarts.init(document.getElementById('efficiencyChart'), 'dark');
+    treemapChart = echarts.init(document.getElementById('treemapChart'), 'dark');
     priceChart = echarts.init(document.getElementById('priceChart'), 'dark');
     sentimentChart = echarts.init(document.getElementById('sentimentChart'), 'dark');
-    splitChart = echarts.init(document.getElementById('splitChart'), 'dark');
-    featureChart = echarts.init(document.getElementById('featureImportanceChart'), 'dark');
+    shapChart = echarts.init(document.getElementById('shapChart'), 'dark');
+    moodGaugeChart = echarts.init(document.getElementById('moodGaugeChart'), 'dark');
+    rollingEfficiencyChart = echarts.init(document.getElementById('rollingEfficiencyChart'), 'dark');
+    hierarchyChart = echarts.init(document.getElementById('hierarchyChart'), 'dark');
 
     // Handle resize
     window.addEventListener('resize', resizeCharts);
 
     // Tab Logic
     setupTabs();
+    setupTimeframes();
 }
 
 function resizeCharts() {
     networkChart.resize();
     efficiencyChart.resize();
+    treemapChart.resize();
     priceChart.resize();
     sentimentChart.resize();
-    splitChart.resize();
-    featureChart.resize();
+    shapChart.resize();
+    moodGaugeChart.resize();
+    rollingEfficiencyChart.resize();
+    hierarchyChart.resize();
 }
 
 function setupTabs() {
@@ -56,6 +63,25 @@ function setupTabs() {
     });
 }
 
+function setupTimeframes() {
+    const buttons = document.querySelectorAll('.tf-btn');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            buttons.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            const days = e.target.getAttribute('data-days');
+            
+            let start = 0;
+            if (days !== 'all') {
+                const totalDays = globalData.market_data[document.getElementById('assetSelector').value].timeseries.length;
+                start = Math.max(0, 100 - (parseInt(days) / totalDays * 100));
+            }
+            priceChart.dispatchAction({ type: 'dataZoom', start: start, end: 100 });
+            sentimentChart.dispatchAction({ type: 'dataZoom', start: start, end: 100 });
+        });
+    });
+}
+
 // Fetch and load data
 async function loadData() {
     try {
@@ -63,6 +89,7 @@ async function loadData() {
         globalData = await response.json();
         
         populateSelector();
+        renderTreemap();
         renderNetworkGraph();
         renderEfficiencyChart();
         
@@ -102,14 +129,136 @@ function updateAssetView(assetKey) {
         el.textContent = assetData.info.name;
     });
 
+    updateKPIs(assetData);
+    updateMarketStats(assetData);
     renderTimeseries(assetData.timeseries);
     renderPrediction(assetData.prediction);
+    renderMoodGauge(assetData.prediction);
+    renderRollingEfficiency(assetData.timeseries);
+    renderHierarchy(assetData.timeseries);
     renderCorrelations(assetKey);
     
-    // Highlight node in network graph
     highlightNetworkNode(assetKey);
-    // Highlight point in efficiency scatter
     highlightEfficiencyPoint(assetKey);
+}
+
+function getNextTradingDay(dateString) {
+    const d = new Date(dateString + 'T00:00:00'); // ensure local time doesn't shift day
+    d.setDate(d.getDate() + 1);
+    // If Saturday (6), add 2 days to get to Monday (1)
+    if (d.getDay() === 6) d.setDate(d.getDate() + 2);
+    // If Sunday (0), add 1 day to get to Monday (1)
+    else if (d.getDay() === 0) d.setDate(d.getDate() + 1);
+    
+    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    return d.toLocaleDateString('es-ES', options);
+}
+
+function updateKPIs(assetData) {
+    const ts = assetData.timeseries;
+    const latest = ts[ts.length - 1];
+    const prev = ts[ts.length - 2] || latest;
+
+    const closePrice = latest.close.toFixed(2);
+    const change = (latest.close - prev.close);
+    const changePct = ((change / prev.close) * 100).toFixed(2);
+    
+    document.getElementById('kpiClose').textContent = closePrice;
+    
+    const changeEl = document.getElementById('kpiChange');
+    changeEl.textContent = `${change > 0 ? '+' : ''}${change.toFixed(2)} (${changePct}%)`;
+    changeEl.className = 'kpi-value ' + (change >= 0 ? 'up' : 'down');
+
+    const socChange = latest.index_tv - prev.index_tv;
+    const socChangePct = prev.index_tv > 0 ? ((socChange / prev.index_tv) * 100).toFixed(1) : 0;
+    const socEl = document.getElementById('kpiSocial');
+    socEl.textContent = `${socChange > 0 ? '+' : ''}${socChangePct}%`;
+    socEl.className = 'kpi-value ' + (socChange >= 0 ? 'up' : 'down');
+
+    // Date logic
+    const latestDateStr = latest.date;
+    const nextDayFormatted = getNextTradingDay(latestDateStr);
+
+    if (document.getElementById('lastCloseDate')) {
+        document.getElementById('lastCloseDate').textContent = latestDateStr;
+    }
+    if (document.getElementById('targetDateTab2')) {
+        document.getElementById('targetDateTab2').textContent = `Target: ${nextDayFormatted}`;
+    }
+    if (document.getElementById('targetDateTab3')) {
+        document.getElementById('targetDateTab3').textContent = `Target: ${nextDayFormatted}`;
+    }
+}
+
+function updateMarketStats(assetData) {
+    if(!assetData.market_stats) return;
+    document.getElementById('statVol').textContent = assetData.market_stats.volatility_cv + "%";
+    document.getElementById('statMinDev').textContent = assetData.market_stats.min_dev + "%";
+    document.getElementById('statMaxDev').textContent = "+" + assetData.market_stats.max_dev + "%";
+    document.getElementById('statTweets').textContent = assetData.market_stats.avg_daily_tweets.toLocaleString();
+}
+
+// 0. Treemap Chart
+function renderTreemap() {
+    const data = [];
+    let latestDate = '--';
+
+    for (const [key, asset] of Object.entries(globalData.market_data)) {
+        const ts = asset.timeseries;
+        if (!ts || ts.length === 0) continue;
+        
+        const latest = ts[ts.length - 1];
+        const prev = ts.length > 1 ? ts[ts.length - 2] : latest;
+        const change = (latest.close - prev.close);
+        const changePct = prev.close !== 0 ? (change / prev.close) * 100 : 0;
+        
+        latestDate = latest.date;
+
+        data.push({
+            name: asset.info.name || key,
+            value: asset.market_stats ? asset.market_stats.avg_daily_tweets || 100 : 100,
+            itemStyle: {
+                color: changePct >= 0 ? '#10b981' : '#ef4444' // up-color : down-color
+            },
+            changePct: changePct.toFixed(2)
+        });
+    }
+    
+    const dateEl = document.getElementById('globalDate');
+    if(dateEl) {
+        dateEl.textContent = 'Fecha: ' + latestDate;
+    }
+
+    const option = {
+        backgroundColor: 'transparent',
+        tooltip: {
+            formatter: function (info) {
+                const change = info.data.changePct;
+                return [
+                    '<strong>' + info.name + '</strong>',
+                    'Cambio: ' + (change >= 0 ? '+' : '') + change + '%'
+                ].join('<br>');
+            }
+        },
+        series: [{
+            type: 'treemap',
+            data: data,
+            roam: false,
+            label: {
+                show: true,
+                formatter: function (info) {
+                    return info.name + '\n' + (info.data.changePct >= 0 ? '+' : '') + info.data.changePct + '%';
+                }
+            },
+            itemStyle: {
+                borderColor: '#0b0f19',
+                borderWidth: 2,
+                gapWidth: 2
+            }
+        }]
+    };
+
+    treemapChart.setOption(option);
 }
 
 // 1. Market Correlation Network
@@ -125,11 +274,10 @@ function renderNetworkGraph() {
             type: 'graph',
             layout: 'force',
             data: data.nodes.map(n => {
-                // Determine color based on prediction
-                let nodeColor = '#94a3b8'; // default gray
+                let nodeColor = '#94a3b8';
                 if (globalData.market_data[n.id]) {
                     const forecast = globalData.market_data[n.id].prediction.forecast;
-                    nodeColor = forecast === 'UP' ? '#10b981' : '#ef4444'; // Green if up, Red if down
+                    nodeColor = forecast === 'UP' ? '#10b981' : '#ef4444';
                 }
                 
                 return {
@@ -163,7 +311,6 @@ function renderNetworkGraph() {
 }
 
 function highlightNetworkNode(assetKey) {
-    // Simple highlight by re-setting option with emphasis
     networkChart.dispatchAction({
         type: 'highlight',
         name: assetKey
@@ -172,7 +319,6 @@ function highlightNetworkNode(assetKey) {
 
 // 2. Market Efficiency Scatter
 function renderEfficiencyChart() {
-    // Extract efficiency data
     const scatterData = [];
     for (const [key, asset] of Object.entries(globalData.market_data)) {
         scatterData.push({
@@ -225,17 +371,27 @@ function renderEfficiencyChart() {
 }
 
 function highlightEfficiencyPoint(assetKey) {
-    // Echarts dispatch action to highlight point
 }
 
-// 3. Timeseries (Candlestick + Social)
+// 3. Timeseries (Candlestick + Social + Technical)
 function renderTimeseries(timeseries) {
     const dates = timeseries.map(t => t.date);
     const candleData = timeseries.map(t => [t.open, t.close, t.low, t.high]);
     const volData = timeseries.map(t => t.index_tv);
     const sentData = timeseries.map(t => t.country_neg_sentiment);
 
-    // Candlestick Chart
+    const markPointData = [];
+    timeseries.forEach((t, i) => {
+        if(t.event) {
+            markPointData.push({
+                name: 'Event',
+                coord: [t.date, t.high],
+                value: t.event,
+                itemStyle: { color: '#fbbf24' }
+            });
+        }
+    });
+
     const priceOption = {
         backgroundColor: 'transparent',
         tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
@@ -266,52 +422,53 @@ function renderTimeseries(timeseries) {
                     color0: '#ef4444',
                     borderColor: '#10b981',
                     borderColor0: '#ef4444'
+                },
+                markPoint: {
+                    data: markPointData,
+                    label: { show: false },
+                    tooltip: { formatter: '{c}' },
+                    symbol: 'pin',
+                    symbolSize: 40
                 }
+            },
+            {
+                name: 'SMA',
+                type: 'line',
+                data: timeseries.map(t => t.index_sma),
+                itemStyle: { color: '#3b82f6' },
+                smooth: true,
+                showSymbol: false,
+                lineStyle: { width: 2, opacity: 0.8 }
             }
         ]
     };
     priceChart.setOption(priceOption);
 
-    // Social Footer Chart
     const sentimentOption = {
         backgroundColor: 'transparent',
         tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
-        grid: { left: '10%', right: '5%', bottom: '20%', top: '10%' },
-        xAxis: {
-            type: 'category',
-            data: dates,
-            axisLabel: { show: false },
-            axisTick: { show: false }
-        },
+        grid: [
+            { left: '10%', right: '5%', top: '5%', height: '35%' },
+            { left: '10%', right: '5%', top: '50%', height: '35%' }
+        ],
+        xAxis: [
+            { type: 'category', data: dates, gridIndex: 0, axisLabel: { show: false }, axisTick: { show: false } },
+            { type: 'category', data: dates, gridIndex: 1, axisLabel: { show: false }, axisTick: { show: false } }
+        ],
         yAxis: [
-            {
-                type: 'value',
-                name: 'Index TV',
-                splitLine: { show: false },
-                axisLabel: { color: '#8b5cf6' }
-            },
-            {
-                type: 'value',
-                name: 'Neg. Sentiment',
-                splitLine: { show: false },
-                axisLabel: { color: '#ef4444' }
-            }
+            { type: 'value', name: 'Vol', gridIndex: 0, splitLine: { show: false }, axisLabel: { show: false } },
+            { type: 'value', name: 'Sent', gridIndex: 0, splitLine: { show: false }, axisLabel: { show: false } },
+            { type: 'value', name: 'MACD', gridIndex: 1, splitLine: { show: false }, axisLabel: { show: false } },
+            { type: 'value', name: 'RSI', gridIndex: 1, splitLine: { show: false }, axisLabel: { show: false } }
+        ],
+        dataZoom: [
+            { type: 'inside', xAxisIndex: [0, 1], start: 0, end: 100 }
         ],
         series: [
-            {
-                name: 'Index Vol',
-                type: 'bar',
-                data: volData,
-                itemStyle: { color: '#8b5cf6', opacity: 0.6 }
-            },
-            {
-                name: 'Neg Sentiment',
-                type: 'line',
-                yAxisIndex: 1,
-                data: sentData,
-                itemStyle: { color: '#ef4444' },
-                lineStyle: { width: 2 }
-            }
+            { name: 'Index Vol', type: 'bar', xAxisIndex: 0, yAxisIndex: 0, data: volData, itemStyle: { color: '#8b5cf6', opacity: 0.6 } },
+            { name: 'Neg Sentiment', type: 'line', xAxisIndex: 0, yAxisIndex: 1, data: sentData, itemStyle: { color: '#ef4444' } },
+            { name: 'MACD', type: 'bar', xAxisIndex: 1, yAxisIndex: 2, data: timeseries.map(t => t.index_macd), itemStyle: { color: '#3b82f6' } },
+            { name: 'RSI', type: 'line', xAxisIndex: 1, yAxisIndex: 3, data: timeseries.map(t => t.index_rsi), itemStyle: { color: '#10b981' } }
         ]
     };
     sentimentChart.setOption(sentimentOption);
@@ -322,79 +479,168 @@ function renderTimeseries(timeseries) {
 
 // 4. Prediction & Explainability
 function renderPrediction(prediction) {
+    // Tab 2 prediction card
     const badge = document.getElementById('predictionBadge');
     badge.textContent = prediction.forecast;
     badge.className = 'prediction-badge ' + prediction.forecast.toLowerCase();
-    
     document.getElementById('predictionProb').textContent = Math.round(prediction.probability * 100) + '%';
+
+    // Tab 3 prediction card
+    const tab3Badge = document.getElementById('tab3PredictionBadge');
+    if (tab3Badge) {
+        tab3Badge.textContent = prediction.forecast;
+        tab3Badge.className = 'prediction-badge ' + prediction.forecast.toLowerCase();
+        document.getElementById('tab3PredictionProb').textContent = Math.round(prediction.probability * 100) + '%';
+        document.getElementById('tab3Confidence').textContent = prediction.probability > 0.7 ? 'Alta' : 'Media';
+    }
 
     const features = prediction.feature_contributions.sort((a, b) => Math.abs(a.weight) - Math.abs(b.weight));
     const names = features.map(f => f.feature);
     const values = features.map(f => f.weight);
     
-    // Calculate split
-    let techSum = 0;
-    let socSum = 0;
+    let totalShap = 0;
     features.forEach(f => {
-        if (f.category === 'technical') {
-            techSum += Math.abs(f.weight);
-        } else {
-            socSum += Math.abs(f.weight);
-        }
+        totalShap += f.weight;
     });
 
-    // Render Split Donut Chart
-    const splitOption = {
+    if (document.getElementById('tab3TotalShap')) {
+        document.getElementById('tab3TotalShap').textContent = totalShap.toFixed(3);
+        const primary = [...features].sort((a, b) => Math.abs(b.weight) - Math.abs(a.weight))[0];
+        document.getElementById('tab3PrimaryDriver').textContent = primary ? primary.feature : '--';
+    }
+
+    const shapOption = {
         backgroundColor: 'transparent',
-        tooltip: { trigger: 'item' },
-        legend: { top: '5%', left: 'center', textStyle: { color: '#f8fafc' } },
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+        grid: { left: '30%', right: '10%', bottom: '10%', top: '10%' },
+        xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }, axisLabel: { color: '#94a3b8' } },
+        yAxis: { type: 'category', data: names, axisLabel: { color: '#94a3b8' }, axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } } },
         series: [
             {
-                name: 'Contribution',
-                type: 'pie',
-                radius: ['40%', '70%'],
-                avoidLabelOverlap: false,
-                itemStyle: {
-                    borderRadius: 5,
-                    borderColor: '#0b0f19',
-                    borderWidth: 2
-                },
-                label: { show: false },
-                data: [
-                    { value: techSum, name: 'Technical', itemStyle: { color: '#3b82f6' } },
-                    { value: socSum, name: 'Social', itemStyle: { color: '#c084fc' } }
-                ]
+                name: 'SHAP Value',
+                type: 'bar',
+                data: values.map((v, i) => ({
+                    value: v,
+                    itemStyle: { color: v > 0 ? '#10b981' : '#ef4444' }
+                })),
+                label: {
+                    show: true,
+                    position: 'right',
+                    formatter: (params) => params.value > 0 ? `+${params.value.toFixed(2)}` : params.value.toFixed(2),
+                    color: '#fff',
+                    fontSize: 10
+                }
             }
         ]
     };
-    splitChart.setOption(splitOption);
+    if (shapChart) {
+        shapChart.setOption(shapOption);
+    }
+}
 
-    // Render Feature Bar Chart
+function renderMoodGauge(prediction) {
+    if (!prediction.social_mood) return;
+    const isBullish = prediction.social_mood === 'Bullish';
+    const score = isBullish ? 0.8 : 0.2; 
+
+    const option = {
+        backgroundColor: 'transparent',
+        series: [{
+            type: 'gauge',
+            startAngle: 180,
+            endAngle: 0,
+            min: 0,
+            max: 1,
+            splitNumber: 2,
+            axisLine: {
+                lineStyle: {
+                    width: 10,
+                    color: [
+                        [0.5, '#ef4444'],
+                        [1, '#10b981']
+                    ]
+                }
+            },
+            pointer: {
+                icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+                length: '60%',
+                width: 6,
+                itemStyle: { color: 'auto' }
+            },
+            axisTick: { show: false },
+            splitLine: { show: false },
+            axisLabel: { show: false },
+            title: { show: false },
+            detail: {
+                fontSize: 14,
+                offsetCenter: [0, '20%'],
+                formatter: function () {
+                    return prediction.social_mood;
+                },
+                color: 'inherit'
+            },
+            data: [{ value: score }]
+        }]
+    };
+    moodGaugeChart.setOption(option);
+}
+
+function renderRollingEfficiency(timeseries) {
+    const dates = timeseries.map(t => t.date);
+    const hurst = timeseries.map(t => t.rolling_hurst);
+    const fd = timeseries.map(t => t.rolling_fd);
+
+    const option = {
+        backgroundColor: 'transparent',
+        tooltip: { trigger: 'axis' },
+        grid: { left: '15%', right: '15%', bottom: '20%', top: '10%' },
+        xAxis: { type: 'category', data: dates, show: false },
+        yAxis: [
+            { type: 'value', position: 'left', min: 0.4, max: 0.9, splitLine: { show: false }, axisLabel: {color: '#8b5cf6', fontSize: 10} },
+            { type: 'value', position: 'right', min: 1.0, max: 1.8, splitLine: { show: false }, axisLabel: {color: '#3b82f6', fontSize: 10} }
+        ],
+        series: [
+            { name: 'Hurst', type: 'line', data: hurst, itemStyle: {color: '#8b5cf6'}, showSymbol: false, smooth: true },
+            { name: 'FD', type: 'line', yAxisIndex: 1, data: fd, itemStyle: {color: '#3b82f6'}, showSymbol: false, smooth: true }
+        ]
+    };
+    rollingEfficiencyChart.setOption(option);
+}
+
+function renderHierarchy(timeseries) {
+    const slice = timeseries.slice(-30);
+    const avgWorld = slice.reduce((a, b) => a + (b.world_tv || 0), 0) / slice.length;
+    const avgCountry = slice.reduce((a, b) => a + (b.country_tv || 0), 0) / slice.length;
+    const avgIndex = slice.reduce((a, b) => a + (b.index_tv || 0), 0) / slice.length;
+
     const option = {
         backgroundColor: 'transparent',
         tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-        grid: { left: '30%', right: '5%', bottom: '10%', top: '5%' },
+        grid: { left: '20%', right: '10%', bottom: '15%', top: '10%' },
         xAxis: {
-            type: 'value',
-            splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }
+            type: 'log',
+            name: 'Log Volume',
+            splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } },
+            axisLabel: { formatter: '{value}' }
         },
         yAxis: {
             type: 'category',
-            data: names,
+            data: ['World', 'Country', 'Index'],
             axisLabel: { color: '#94a3b8' }
         },
         series: [
             {
-                name: 'Contribution',
                 type: 'bar',
-                data: values.map((v, i) => ({
-                    value: v,
-                    itemStyle: { color: features[i].category === 'technical' ? '#3b82f6' : '#c084fc' }
-                }))
+                data: [
+                    {value: avgWorld, itemStyle: {color: '#3b82f6'}},
+                    {value: avgCountry, itemStyle: {color: '#c084fc'}},
+                    {value: avgIndex, itemStyle: {color: '#10b981'}}
+                ],
+                label: { show: true, position: 'right', formatter: (params) => Math.round(params.value).toLocaleString(), color: '#fff' }
             }
         ]
     };
-    featureChart.setOption(option);
+    hierarchyChart.setOption(option);
 }
 
 // 5. Correlation List
@@ -405,7 +651,6 @@ function renderCorrelations(assetKey) {
     const links = globalData.market_correlation.links;
     let assetLinks = [];
 
-    // Find all links involving this asset
     links.forEach(l => {
         if (l.source === assetKey) assetLinks.push({ target: l.target, value: l.value });
         if (l.target === assetKey) assetLinks.push({ target: l.source, value: l.value });
@@ -416,18 +661,14 @@ function renderCorrelations(assetKey) {
         return;
     }
 
-    // Sort by correlation value
     assetLinks.sort((a, b) => b.value - a.value);
 
-    // Create HTML for each item
     assetLinks.forEach(link => {
         const item = document.createElement('div');
-        // If value > 0.5 we consider it highly positive, if < 0.3 we consider it low/negative for styling purposes
         const typeClass = link.value >= 0.5 ? 'positive' : 'negative';
         item.className = `corr-item ${typeClass}`;
         
         let targetName = link.target;
-        // Try to get full name if available in market_data
         if (globalData.market_data[link.target]) {
             targetName = globalData.market_data[link.target].info.name;
         }

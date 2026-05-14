@@ -52,6 +52,13 @@
             <div class="tabs-container">
                 <!-- TAB 1: VISIÓN GLOBAL -->
                 <div id="tab-1" class="tab-pane active">
+                    <div class="treemap-header">
+                        <h2>Visión Global del Mercado</h2>
+                        <span id="globalDate" class="global-date">--</span>
+                    </div>
+                    <section class="glass-panel treemap-section" style="margin-bottom: 20px;">
+                        <div id="treemapChart" class="chart-container" style="height: 350px; width: 100%;"></div>
+                    </section>
                     <div class="main-grid tab-1-grid">
                         <section class="glass-panel correlation-section">
                             <h2>Market Correlation Network</h2>
@@ -72,6 +79,26 @@
                             <div class="section-header">
                                 <h2><span class="activeAssetName">S&P 500</span> Price & Sentiment</h2>
                             </div>
+                            <div class="kpi-header">
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Latest Close (<span id="lastCloseDate">--</span>)</span>
+                                    <span class="kpi-value" id="kpiClose">--</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Daily Change</span>
+                                    <span class="kpi-value" id="kpiChange">--</span>
+                                </div>
+                                <div class="kpi-item">
+                                    <span class="kpi-label">Social Vol Change</span>
+                                    <span class="kpi-value" id="kpiSocial">--</span>
+                                </div>
+                            </div>
+                            <div class="timeframe-filters">
+                                <button class="tf-btn" data-days="30">1M</button>
+                                <button class="tf-btn" data-days="180">6M</button>
+                                <button class="tf-btn" data-days="365">1Y</button>
+                                <button class="tf-btn active" data-days="all">Max</button>
+                            </div>
                             <div class="charts-stack">
                                 <div id="priceChart" class="chart-container flex-chart-large"></div>
                                 <div id="sentimentChart" class="chart-container flex-chart-small"></div>
@@ -80,13 +107,31 @@
                         
                         <!-- Panel Lateral -->
                         <div class="side-panel">
-                            <!-- Predicción -->
+                            <!-- Predicción y Social Mood -->
                             <section class="glass-panel prediction-card-section">
-                                <h2>Next Day Forecast</h2>
+                                <h2>Forecast for Next Trading Day<br><span id="targetDateTab2" style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 400;">--</span></h2>
+                                <div id="moodGaugeChart" class="chart-container" style="height: 120px;"></div>
                                 <div class="prediction-card">
                                     <div id="predictionBadge" class="prediction-badge">--</div>
                                     <div class="prediction-prob">Probability: <span id="predictionProb">0%</span></div>
                                 </div>
+                            </section>
+                            
+                            <!-- Market Stats -->
+                            <section class="glass-panel market-stats-section">
+                                <h2>Market Stats</h2>
+                                <div id="marketStats" class="market-stats-list">
+                                    <div class="stat-item"><span>Volatility (CV%)</span> <span id="statVol">--</span></div>
+                                    <div class="stat-item"><span>Min Dev</span> <span id="statMinDev">--</span></div>
+                                    <div class="stat-item"><span>Max Dev</span> <span id="statMaxDev">--</span></div>
+                                    <div class="stat-item"><span>Avg Tweets/Day</span> <span id="statTweets">--</span></div>
+                                </div>
+                            </section>
+
+                            <!-- Rolling Efficiency -->
+                            <section class="glass-panel rolling-efficiency-section">
+                                <h2>Rolling Efficiency</h2>
+                                <div id="rollingEfficiencyChart" class="chart-container" style="height: 150px;"></div>
                             </section>
                             
                             <!-- Correlaciones -->
@@ -102,20 +147,39 @@
 
                 <!-- TAB 3: EXPLICABILIDAD -->
                 <div id="tab-3" class="tab-pane">
-                    <div class="main-grid tab-3-grid">
-                        <section class="glass-panel prediction-section">
-                            <h2><span class="activeAssetName">S&P 500</span> - Prediction Factors</h2>
-                            <div class="charts-stack">
-                                <div>
-                                    <h3>Technical vs Social Split</h3>
-                                    <div id="splitChart" class="chart-container flex-chart-small"></div>
-                                </div>
-                                <div>
-                                    <h3>Feature Contributions</h3>
-                                    <div id="featureImportanceChart" class="chart-container flex-chart-large"></div>
-                                </div>
-                            </div>
+                    <div class="main-grid tab-3-grid" style="grid-template-columns: 2fr 1fr; gap: 20px; display: grid;">
+                        <!-- Left side: SHAP Values -->
+                        <section class="glass-panel shap-section">
+                            <h2><span class="activeAssetName">S&P 500</span> - SHAP Values (Model Explanation)</h2>
+                            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: -10px; margin-bottom: 15px;">
+                                Impacto de cada variable en la salida del modelo. Valores positivos empujan la predicción hacia ALZA (UP), valores negativos hacia BAJA (DOWN).
+                            </p>
+                            <div id="shapChart" class="chart-container" style="height: 500px;"></div>
                         </section>
+                        
+                        <!-- Right side: Prediction & Details -->
+                        <div class="side-panel">
+                            <section class="glass-panel prediction-card-section">
+                                <h2>Predicción para Mañana<br><span id="targetDateTab3" style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 400;">--</span></h2>
+                                <div class="prediction-card" style="margin-bottom: 20px;">
+                                    <div id="tab3PredictionBadge" class="prediction-badge">--</div>
+                                    <div class="prediction-prob">Probabilidad: <span id="tab3PredictionProb">0%</span></div>
+                                </div>
+                                
+                                <h3 style="font-size: 1rem; margin-bottom: 15px; color: var(--text-primary);">Detalles de Decisión</h3>
+                                <div class="market-stats-list">
+                                    <div class="stat-item"><span>Variable Principal</span> <span id="tab3PrimaryDriver" style="font-size: 0.9rem;">--</span></div>
+                                    <div class="stat-item"><span>Confianza</span> <span id="tab3Confidence">--</span></div>
+                                    <div class="stat-item"><span>Base Value (E[f(x)])</span> <span>0.00</span></div>
+                                    <div class="stat-item"><span>Total SHAP f(x)</span> <span id="tab3TotalShap">--</span></div>
+                                </div>
+                            </section>
+                            
+                            <section class="glass-panel hierarchy-section" style="margin-top: 20px;">
+                                <h2>Contexto Jerárquico</h2>
+                                <div id="hierarchyChart" class="chart-container" style="height: 200px;"></div>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
